@@ -1,0 +1,2 @@
+module TeacherFollowingsHelper
+end

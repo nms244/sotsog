@@ -1,0 +1,17 @@
+<h1>マッチング画面</h1>
+
+<%= form_tag({controller:"students",action:"index"}, method: :get) do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag '検索'  %>
+<% end %>
+
+<h3>先生一覧</h3>
+<div class="teachers-container">
+  <% @teachers.each do |t| %>
+    <div class="maching-index">
+      <%= image_tag t.icon_url,size: "50x50" if t.icon?  %>
+      <%= t.name %>
+      <%= link_to '詳細', teacher_path(t.id)%>
+    </div>
+  <% end %>
+</div>

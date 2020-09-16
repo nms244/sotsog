@@ -1,0 +1,18 @@
+  <% if flwng && flwd %>
+    <% if ids.include?(stu.id) %>
+      <%= link_to 'DMへ', room_path(current_teacher.rooms.find_by(student_id: stu.id)) %>
+    <% else %>
+      <div style = 'display: inline-block;'>
+        <%= form_for Room.new do |f| %>
+          <%= f.hidden_field :student_id, :value => stu.id %>
+          <%= f.submit "ルーム作成" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% elsif flwd %>
+    この生徒をフォローしてください。
+  <% elsif flwng %>
+    この生徒にフォローされていません。
+  <% else %>
+    DMを送るためには相互フォローである必要があります。
+  <% end %>

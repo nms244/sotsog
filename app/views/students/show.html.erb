@@ -1,0 +1,18 @@
+<h1>プロフィール</h1>
+
+<%= image_tag @student.icon_url, size: '100x100' if @student.icon? %>
+名前：<%= @student.name %><br>
+プロフィール：<%= @student.profile %><br>
+
+<% if student_signed_in? %>
+  <%= link_to '編集', edit_student_registration_path %>
+  <br>
+  <%= link_to 'フォロー/フォロワー', student_following_path(@student.id) %>
+<% elsif teacher_signed_in? %>
+  ※先生として見ています。
+  <%= render 'teacher_followings/follow_button', student: @student %>
+  <br>
+  <%= render 'teacher_followings/DM_link', stu: @student, ids: @student_ids, flwng: @following, flwd: @followed %>
+<% else %>
+  ※ログインしてください。
+<% end %>

@@ -1,0 +1,11 @@
+<% if current_teacher.already_following?(student) %>
+  <%= form_for(current_teacher.teacher_followings.find_by(followed_id: student.id), method: :delete) do |f| %>
+    <%= hidden_field_tag :followed_id, student.id %>
+    <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block' %>
+  <% end %>
+<% else %>
+  <%= form_for(current_teacher.teacher_followings.build) do |f| %>
+    <%= hidden_field_tag :followed_id, student.id %>
+    <%= f.submit 'Follow', class: 'btn btn-primary btn-block' %>
+  <% end %>
+<% end %>

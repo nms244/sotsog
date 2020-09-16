@@ -1,0 +1,55 @@
+<h1>ダイレクトメッセージ</h1>
+
+<% if student_signed_in? %>
+  <%= @teacher.name %>とのDM<br>
+  <div class="chat-field">
+    <% @messages.each do |m| %>
+      <% if m.is_student %>
+        <div class="right-message">
+          <%= image_tag m.image_url if m.image? %>
+          <%= m.content %>
+          <%= m.created_at %>
+        </div>
+      <% else %>
+        <div class="left-message">
+          <%= image_tag m.image_url if m.image? %>
+          <%= m.content %>
+          <%= m.created_at %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% elsif teacher_signed_in? %>
+  <%= @student.name %>とのDM
+  <div class="chat-field">
+    <% @messages.each do |m| %>
+      <% if m.is_student %>
+        <div class="left-message">
+          <%= image_tag m.image_url if m.image? %>
+          <%= m.content %>
+          <%= m.created_at %>
+        </div>
+      <% else %>
+        <div class="right-message">
+          <%= image_tag m.image_url if m.image? %>
+          <%= m.content %>
+          <%= m.created_at %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+<% end %>
+
+<div class="post-form">
+  <%= form_for [@room, @message] do |f| %>
+    <div class="field">
+      <%= f.text_field :content %>
+      <%= f.submit "送信"%>
+    </div>
+
+    <div class="field">
+      <%= f.file_field :image %>
+    </div>
+  <% end %>
+</div>

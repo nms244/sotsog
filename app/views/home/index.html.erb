@@ -1,0 +1,21 @@
+<h2>ホーム画面</h2>
+
+<% if student_signed_in? %>
+  <%= current_student.name %>としてログインしています
+  <%= link_to 'マッチングページ', students_path %>
+  <%= link_to 'ログアウト', destroy_student_session_path, method: :delete %>
+<% elsif teacher_signed_in? %>
+  <%= current_teacher.name %>としてログインしています
+  <%= link_to 'マッチングページ', teachers_path %>
+  <%= link_to 'ログアウト', destroy_teacher_session_path, method: :delete %>
+<% else %>
+  生徒<br>
+  <%= link_to '新規登録', new_student_registration_path %>
+  <%= link_to 'ログイン', new_student_session_path %>
+  <br>
+  先生<br>
+  <%= link_to '新規登録', new_teacher_registration_path %>
+  <%= link_to 'ログイン', new_teacher_session_path %>
+
+<% end %>
+

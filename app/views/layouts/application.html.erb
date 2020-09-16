@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sotsog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%# --deviseのフラッシュメッセージ-- %>
+    <% if flash[:notice] %>
+      <p><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:alert] %>
+      <p><%= flash[:alert] %></p>
+    <% end %>
+
+    <header>
+      SOTSOG
+      <%= link_to 'HOME', root_path %><br>
+      <% if student_signed_in? %>
+        ログインユーザー<br>
+        <%= image_tag current_student.icon_url, size: '40x40' if current_student.icon? %>
+        <%= current_student.name %>
+        <%= link_to 'マッチング画面', students_path %>
+        <%= link_to 'プロフィール', student_path(current_student.id) %>
+        <%= link_to 'ログアウト', destroy_student_session_path, method: :delete %>
+      <% elsif teacher_signed_in? %>
+        ログインユーザー<br>
+        <%= image_tag current_teacher.icon_url, size: '40x40' if current_teacher.icon? %>
+        <%= current_teacher.name %>
+        <%= link_to 'マッチング画面', teachers_path %>
+        <%= link_to 'プロフィール', teacher_path(current_teacher.id) %>
+        <%= link_to 'ログアウト', destroy_teacher_session_path, method: :delete %>
+      <% end %>
+    </header>
+
+    <%= yield %>
+  </body>
+</html>
