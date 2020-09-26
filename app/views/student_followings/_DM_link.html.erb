@@ -1,18 +1,16 @@
   <% if flwng && flwd %>
     <% if ids.include?(tea.id) %>
-      <%= link_to 'DMへ', room_path(current_student.rooms.find_by(teacher_id: tea.id)) %>
+      <%= link_to 'DMへ', room_path(current_student.rooms.find_by(teacher_id: tea.id)), class: 'button' %>
     <% else %>
-      <div style = 'display: inline-block;'>
-        <%= form_for Room.new do |f| %>
-          <%= f.hidden_field :teacher_id, :value => tea.id %>
-          <%= f.submit "ルーム作成" %>
-        <% end %>
-      </div>
+      <%= form_for Room.new do |f| %>
+        <%= f.hidden_field :teacher_id, :value => tea.id %>
+        <%= f.submit "ルーム作成", class: 'button' %>
+      <% end %>
     <% end %>
   <% elsif flwd %>
-    この先生をフォローしてください。
+    <div class="comment">フォローしてください</div>
   <% elsif flwng %>
-    この先生にフォローされていません。
+    <div class="comment">フォローされていません</div>
   <% else %>
-    DMを送るためには相互フォローである必要があります。
+    <div class="comment">DMを送るためには相互フォローである必要があります</div>
   <% end %>

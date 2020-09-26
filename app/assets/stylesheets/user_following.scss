@@ -1,4 +1,4 @@
-// Place all the styles related to the rooms controller here.
+// Place all the styles related to the students and teachers _following controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
@@ -7,7 +7,7 @@ $font-size: 14px;
 $line-height: 1.4;
 $lines: 2;
 
-.rooms-show{
+.student_followings-show,.teacher_followings-show{
   display: flex;
   nav{
     .my-info{
@@ -93,78 +93,63 @@ $lines: 2;
   }
 
   main{
-    width: 100%;
     h3{
+      display: inline-block;
+      margin-bottom: 10px;
       font-size: 24px;
+      font-weight: bold;
     }
-    .chat-field{
-      margin-top: 10px;
-
+    display: flex;
+    .user{
+      padding: 10px 0px;
+      border-bottom: 1px solid #021722;
       display: flex;
-      flex-direction: column;
-      .left-message{
-        padding: 10px;
-        border-bottom: 1px solid #021722 ;
-        // text-align: left;
-        display: flex;
-        justify-content: flex-start;
+      .icon{
+        width: 100px;
       }
-
-      .right-message{
-        padding: 10px;
-        border-bottom: 1px solid #021722;
-        text-align: right;
-        display: flex;
-        justify-content: flex-end;
-        display: inline-block;
-        background-color: #0d78ad;
-
-        .image,.content,.posted-date{
-          background-color: #0d78ad;
+      .info{
+        padding-top: 5px;
+        padding-left: 10px;
+        height: 100%;
+        .name{
+          font-size: 22px;
         }
-      }
-      .image{
-        padding: 10px;
-        width: 80%;
+        .button{
+          display: inline-block;
+          line-height: 1.4;
+          margin: 0;
+          padding: 0px 5px;
+          border-right: 3px solid #021722;
+          border-bottom: 3px solid #6E7578;
+          border-radius: 4px;
+          background-color: #043249;
+          text-align: center;
+          color: #ECECEC;
+          font-size: 18px;
+          font-weight: normal;
+          &:hover{
+            color: #FFB649;
+            cursor: pointer;
+          }
+          &:active{
+            border: none;
+         }
+        }
+        .comment{
+          color: red;
+          font-weight: normal;
+        }
       }
     }
-
-    .post-form{
-      margin-top: 10px;
+    .followings{
+      flex: 1;
       padding: 5px;
-      border: 2px solid #021722;
-      .text-form{
-        margin-bottom: 5px;
-        padding-right: 5px;
-        display: flex;
-        textarea#message_content{
-          flex: 1;
-          margin-right: 5px;
-          padding: 2px;
-          border: 1px solid #021722;
-          height: $font-size*$line-height*($lines + 3);
-        }
-      }
-      .button{
-        display: inline-block;
-        margin: 0;
-        padding: 2px 5px;
-        border-right: 3px solid #021722;
-        border-bottom: 3px solid #6E7578;
-        border-radius: 4px;
-        background-color: #043249;
-        text-align: center;
-        color: #ECECEC;
-        font-size: $font-size;
-        font-weight: normal;
-        &:hover{
-          color: #FFB649;
-          cursor: pointer;
-        }
-        &:active{
-          border: none;
-       }
-      }
+      border-right: 1px solid #021722;
+    }
+    .followers{
+      flex: 1;
+      padding: 5px;
+      border-left: 1px solid #021722;
     }
   }
 }

@@ -1,22 +1,38 @@
-<br> フォロー <br>
-<% @teachers.each do |t| %>
-  <% if current_student.already_following?(t)%>
-    <%= image_tag t.icon_url, size: '30x30' if t.icon? %>
-    <%= t.name %>
-    <%= link_to '詳細', teacher_path(t.id)%>
-    <%= render 'student_followings/DM_link', tea: t, ids: @teacher_ids, flwng: current_student.already_following?(t), flwd: current_student.already_followed?(t) %>
-    <br>
-  <% end %>
-<% end %>
+<div class="student_followings-show">
+  <%= render 'students/nav.html.erb' %>
 
-<br>
-フォロワー <br>
-<% @teachers.each do |t| %>
-  <% if current_student.already_followed?(t)%>
-    <%= image_tag t.icon_url, size: '30x30' if t.icon? %>
-    <%= t.name %>
-    <%= link_to '詳細', teacher_path(t.id)%>
-    <%= render 'student_followings/DM_link', tea: t, ids: @teacher_ids, flwng: current_student.already_following?(t), flwd: current_student.already_followed?(t) %>
-    <br>
-  <% end %>
-<% end %>
+  <main>
+    <div class="followings">
+      <h3>フォロー</h3>
+      <% @teachers.each do |t| %>
+        <% if current_student.already_following?(t)%>
+          <div class="user">
+            <%= link_to teacher_path(t.id) do %>
+              <%= user_icon(t) %>
+            <% end %>
+            <div class="info">
+              <div class="name"><%= t.name %></div> <br>
+              <%= render 'student_followings/DM_link', tea: t, ids: @teacher_ids, flwng: current_student.already_following?(t), flwd: current_student.already_followed?(t) %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="followers">
+      <h3>フォロワー</h3>
+      <% @teachers.each do |t| %>
+        <% if current_student.already_followed?(t)%>
+          <div class="user">
+            <%= link_to teacher_path(t.id) do %>
+              <%= user_icon(t) %>
+            <% end %>
+            <div class="info">
+              <div class="name"><%= t.name %></div> <br>
+              <%= render 'student_followings/DM_link', tea: t, ids: @teacher_ids, flwng: current_student.already_following?(t), flwd: current_student.already_followed?(t) %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </main>
+</div>

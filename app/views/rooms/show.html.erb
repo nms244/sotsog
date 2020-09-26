@@ -1,55 +1,59 @@
-<h1>ダイレクトメッセージ</h1>
+<div class="rooms-show">
+  <%= navigation_bar %>
 
-<% if student_signed_in? %>
-  <%= @teacher.name %>とのDM<br>
-  <div class="chat-field">
-    <% @messages.each do |m| %>
-      <% if m.is_student %>
-        <div class="right-message">
-          <%= image_tag m.image_url if m.image? %>
-          <%= m.content %>
-          <%= m.created_at %>
+  <main>
+    <% if student_signed_in? %>
+      <h3><%= @teacher.name %>とのDM</h3>
+      <div class="chat-field">
+        <% @messages.each do |m| %>
+          <% if m.is_student %>
+            <div class="right-message">
+              <%= image_tag m.image_url, class: 'image' if m.image? %>
+              <div class="content"><%= m.content %></div>
+              <div class="posted-time"><%= m.created_at %></div>
+            </div>
+          <% else %>
+            <div class="left-message">
+              <%= image_tag m.image_url, class: 'image' if m.image? %>
+              <div class="content"><%= m.content %></div>
+              <div class="posted-time"><%= m.created_at %></div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% elsif teacher_signed_in? %>
+      <h3><%= @student.name %>とのDM</h3>
+      <div class="chat-field">
+        <% @messages.each do |m| %>
+          <% if m.is_student %>
+            <div class="left-message">
+              <%= image_tag m.image_url, class: 'image' if m.image? %>
+              <div class="content"><%= m.content %></div>
+              <div class="posted-time"><%= m.created_at %></div>
+            </div>
+          <% else %>
+            <div class="right-message">
+              <%= image_tag m.image_url, class: 'image' if m.image? %>
+              <div class="content"><%= m.content %></div>
+              <div class="posted-date"><%= m.created_at %></div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+    <% end %>
+
+    <div class="post-form">
+      <%= form_for [@room, @message] do |f| %>
+        <div class="text-form"">
+          <%= f.text_area :content %>
+          <%= f.submit "送信", class: 'button' %>
         </div>
-      <% else %>
-        <div class="left-message">
-          <%= image_tag m.image_url if m.image? %>
-          <%= m.content %>
-          <%= m.created_at %>
+
+        <div class="image-form">
+          <%= f.file_field :image %>
         </div>
       <% end %>
-    <% end %>
-  </div>
-<% elsif teacher_signed_in? %>
-  <%= @student.name %>とのDM
-  <div class="chat-field">
-    <% @messages.each do |m| %>
-      <% if m.is_student %>
-        <div class="left-message">
-          <%= image_tag m.image_url if m.image? %>
-          <%= m.content %>
-          <%= m.created_at %>
-        </div>
-      <% else %>
-        <div class="right-message">
-          <%= image_tag m.image_url if m.image? %>
-          <%= m.content %>
-          <%= m.created_at %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-
-<% end %>
-
-<div class="post-form">
-  <%= form_for [@room, @message] do |f| %>
-    <div class="field">
-      <%= f.text_field :content %>
-      <%= f.submit "送信"%>
     </div>
-
-    <div class="field">
-      <%= f.file_field :image %>
-    </div>
-  <% end %>
+  </main>
 </div>

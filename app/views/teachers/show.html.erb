@@ -1,22 +1,26 @@
-<h1>プロフィール</h1>
+<div class="teachers-show">
+  <%= navigation_bar %>
 
-<%= image_tag @teacher.icon_url, size: '100x100' if @teacher.icon? %>
-名前：<%= @teacher.name %><br>
-プロフィール：<%= @teacher.profile %><br>
-担当科目：<%= @teacher.subject %><br>
+  <main>
+    <div class="icon-button">
+      <%= user_icon(@teacher) %>
+      <% if teacher_signed_in? %>
+        <div class="buttons">
+          <%= link_to '編集', edit_teacher_registration_path, class: 'button' %>
+          <%= link_to 'フォロー/フォロワー', teacher_following_path(@teacher.id), class: 'button' %>
+        </div>
+      <% elsif student_signed_in? %>
+        <%= render 'student_followings/follow_button', teacher: @teacher %>
+        <br>
+        <%= render 'student_followings/DM_link', tea: @teacher, ids: @teacher_ids, flwng: @following, flwd: @followed %>
+      <% else %>
+        ※ログインしてください。
+      <% end %>
+    </div>
+    <div class="name"><span>名前：</span><%= @teacher.name %></div>
+    <div class="subject"><span>担当科目：<br></span><%= @teacher.subject %></div>
+    <div class="profile"><span>プロフィール：<br></span><%= @teacher.profile %></div>
 
-<% if teacher_signed_in? %>
-  <%= link_to '編集', edit_teacher_registration_path %>
-  <br>
-  <%= link_to 'フォロー/フォロワー', teacher_following_path(@teacher.id) %>
-<% elsif student_signed_in? %>
-  ※生徒として見ています。
+  </main>
 
-  <%= render 'student_followings/follow_button', teacher: @teacher %>
-  <br>
-  <%= render 'student_followings/DM_link', tea: @teacher, ids: @teacher_ids, flwng: @following, flwd: @followed %>
-<% else %>
-  ※ログインしてください。
-<% end %>
-
-
+</div>

@@ -1,17 +1,28 @@
-<h1>マッチング画面</h1>
+<div class="students-index">
+  <%= navigation_bar %>
 
-<%= form_tag({controller:"students",action:"index"}, method: :get) do %>
-  <%= text_field_tag :search %>
-  <%= submit_tag '検索'  %>
-<% end %>
-
-<h3>先生一覧</h3>
-<div class="teachers-container">
-  <% @teachers.each do |t| %>
-    <div class="maching-index">
-      <%= image_tag t.icon_url,size: "50x50" if t.icon?  %>
-      <%= t.name %>
-      <%= link_to '詳細', teacher_path(t.id)%>
+  <main>
+    <div class="search-form">
+      <%= form_tag({controller:"students",action:"index"}, method: :get) do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag '検索'  %>
+      <% end %>
     </div>
-  <% end %>
+    <h3>先生一覧</h3>
+    <div class="users">
+      <% @teachers.each do |t| %>
+        <hr>
+        <div class="user">
+          <%= link_to teacher_path(t.id) do %>
+            <div class="user-icon"><%= user_icon(t) %></div>
+            <div class="info">
+              <div class="name"><%= t.name %></div>
+              <div class="subject"><span>担当科目：</span><%= t.subject %></div>
+              <div class="profile"><span>プロフィール：</span><%= t.profile %></div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </main>
 </div>

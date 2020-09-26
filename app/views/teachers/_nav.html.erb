@@ -1,0 +1,25 @@
+  <nav>
+    <div class="my-info">
+      <%= link_to teacher_path(current_teacher.id) do %>
+        <%= user_icon(current_teacher) %>
+      <% end %>
+      <div class="name">
+        <%= current_teacher.name %>
+      </div>
+      <div class="detail">
+        <div class="subject"><span>担当科目：</span><%= current_teacher.subject %></div>
+        <div class="profile"><span>プロフィール：</span><%= current_teacher.profile %></div>
+      </div>
+    </div>
+    <ul class="gnavi">
+      <li><%= link_to 'ホーム', root_path %></li>
+      <li><%= link_to 'プロフィール', teacher_path(current_teacher.id) %></li>
+      <li><%= link_to 'マッチング画面', teachers_path %></li>
+      <li><%= link_to 'ログアウト', destroy_teacher_session_path, method: :delete %></li>
+    </ul>
+    <div class="side-footer">
+      Copyright <br>
+      &copy; Tsuyoshi Nakayama <br>
+      All Rights Reserved.
+    </div>
+  </nav>

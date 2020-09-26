@@ -1,0 +1,24 @@
+  <nav>
+    <div class="my-info">
+      <%= link_to student_path(current_student.id) do %>
+        <%= user_icon(current_student) %>
+      <% end %>
+      <div class="name">
+        <%= current_student.name %>
+      </div>
+      <div class="detail">
+        <div class="profile"><span>プロフィール：</span><%= current_student.profile %></div>
+      </div>
+    </div>
+    <ul class="gnavi">
+      <li><%= link_to 'ホーム', root_path %></li>
+      <li><%= link_to 'プロフィール', student_path(current_student.id) %></li>
+      <li><%= link_to 'マッチング画面', students_path %></li>
+      <li><%= link_to 'ログアウト', destroy_student_session_path, method: :delete %></li>
+    </ul>
+    <div class="side-footer">
+      Copyright <br>
+      &copy; Tsuyoshi Nakayama <br>
+      All Rights Reserved.
+    </div>
+  </nav>

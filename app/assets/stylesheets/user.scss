@@ -1,0 +1,400 @@
+// Place all the styles related to the students and teachers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+// Variables
+$font-size: 14px;
+$line-height: 1.4;
+$lines: 2;
+
+.students-index,.teachers-index{
+  input, button{
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  display: flex;
+  nav{
+    .my-info{
+      border-bottom: 2px solid #021722;
+      .icon{
+        display: block;
+        margin: auto;
+        width: 80%;
+        height: auto;
+      }
+      .name{
+        margin: 10px 10px;
+        font-size:22px;
+        font-weight: bold;
+      }
+      .detail{
+        margin: 10px 10px;
+        span{
+          font-weight: bold;
+        }
+        .subject{
+          margin: 10px 0px;
+          overflow:hidden;
+          padding-right: 10px;
+          font-size: $font-size;
+          height: $font-size*$line-height*$lines;
+          line-height: $line-height;
+          position: relative;
+          &:before,
+          &:after {
+            position: absolute;
+          }
+          &:before {
+            content: "...";
+            top: $font-size*$line-height*($lines - 1);
+            right: 0;
+          }
+          &:after {
+            background-color: #ECECEC;
+            content: "";
+            height: 100%;
+            width: 100%;
+          }
+        }
+        .profile{
+          overflow: hidden;
+          margin: 10px 0px;
+          padding-right: 10px;
+          font-size: $font-size;
+          height: $font-size*$line-height*($lines + 1);
+          line-height: $line-height;
+          position: relative;
+          &:before,
+          &:after {
+            position: absolute;
+          }
+          &:before {
+            content: "...";
+            top: $font-size*$line-height*($lines + 0);
+            right: 0;
+          }
+          &:after {
+            background-color: #ECECEC;
+            content: "";
+            height: 100%;
+            width: 100%;
+          }
+        }
+      }
+    }
+    .gnavi{
+      flex: 1;
+      border-bottom: 2px solid #021722;
+      padding: 9px 15px;
+      font-size:22px;
+      font-weight: bold;
+    }
+    .side-footer{
+      padding: 5px 10px;
+      background-color: #043249;
+      color: #ECECEC;
+    }
+  }
+
+  main{
+    .search-form{
+      margin-bottom: 10px;
+      input#search{
+        border: 1px solid #021722;
+      }
+    }
+    .users{
+      width: 100%;
+      .user:hover{
+        border-color: #FFB649;
+      }
+      .user{
+        margin: 5px 0px;
+        border-left: 5px solid rgba(0,0,0,0);
+        height: 100px;
+        width: 100%;
+        display: flex;
+        a:hover{
+          color: #021722;
+        }
+        a:link, a:visited{
+          color: #021722;
+          display: flex;
+          .user-icon{
+            grid-area: icon;
+            height: 100%;
+            .icon{
+              height: 100%;
+              width: auto;
+            }
+          }
+          .info{
+            width: 100%;
+            margin-left: 5px;
+            padding-right: 5px;
+            div{
+              overflow: hidden;
+            }
+            span{
+              font-weight: bold;
+            }
+            display: flex;
+            flex-direction: column;
+            // justify-content: space-between;
+            .name{
+              font-size: 22px;
+            }
+            .subject{
+              font-size: $font-size;
+              height: $font-size*$line-height;
+              line-height: $line-height;
+              position: relative;
+              &:before,
+              &:after {
+                position: absolute;
+              }
+              &:before {
+                content: "...";
+                top: 0;
+                right: 0;
+              }
+              &:after {
+                background-color: #ECECEC;
+                content: "";
+                height: 100%;
+                width: 100%;
+              }
+            }
+            .profile{
+              font-size: $font-size;
+              height: $font-size*$line-height*$lines;
+              line-height: $line-height;
+              position: relative;
+              &:before,
+              &:after {
+                position: absolute;
+              }
+              &:before {
+                content: "...";
+                top: $font-size*$line-height*($lines - 1);
+                right: 0;
+              }
+              &:after {
+                background-color: #ECECEC;
+                content: "";
+                height: 100%;
+                width: 100%;
+              }
+
+            }
+          }
+        }
+
+      }
+    }
+  }
+}
+
+.teachers-index{
+  main{
+    .users{
+      .user{
+        a:link,a:visited{
+          .info{
+            .profile{
+              height: $font-size*$line-height*($lines + 1);
+              line-height: $line-height;
+              &:before {
+                content: "...";
+                top: $font-size*$line-height*$lines;
+                right: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.students-show,.teachers-show{
+  input, button{
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  display: flex;
+  nav{
+    .my-info{
+      border-bottom: 2px solid #021722;
+      .icon{
+        display: block;
+        margin: auto;
+        width: 80%;
+        height: auto;
+      }
+      .name{
+        margin: 10px 10px;
+        font-size:22px;
+        font-weight: bold;
+      }
+      .detail{
+        margin: 10px 10px;
+        span{
+          font-weight: bold;
+        }
+        .subject{
+          margin: 10px 0px;
+          overflow:hidden;
+          padding-right: 10px;
+          font-size: $font-size;
+          height: $font-size*$line-height*$lines;
+          line-height: $line-height;
+          position: relative;
+          &:before,
+          &:after {
+            position: absolute;
+          }
+          &:before {
+            content: "...";
+            top: $font-size*$line-height*($lines - 1);
+            right: 0;
+          }
+          &:after {
+            background-color: #ECECEC;
+            content: "";
+            height: 100%;
+            width: 100%;
+          }
+        }
+        .profile{
+          overflow: hidden;
+          margin: 10px 0px;
+          padding-right: 10px;
+          font-size: $font-size;
+          height: $font-size*$line-height*($lines + 1);
+          line-height: $line-height;
+          position: relative;
+          &:before,
+          &:after {
+            position: absolute;
+          }
+          &:before {
+            content: "...";
+            top: $font-size*$line-height*($lines + 0);
+            right: 0;
+          }
+          &:after {
+            background-color: #ECECEC;
+            content: "";
+            height: 100%;
+            width: 100%;
+          }
+        }
+      }
+    }
+    .gnavi{
+      flex: 1;
+      border-bottom: 2px solid #021722;
+      padding: 9px 15px;
+      font-size:22px;
+      font-weight: bold;
+    }
+    .side-footer{
+      padding: 5px 10px;
+      background-color: #043249;
+      color: #ECECEC;
+    }
+  }
+
+  main{
+    font-size: 22px;
+    .icon-button{
+      height: 150px;
+      display: flex;
+      align-items: center;
+      .icon{
+        display: block;
+        height: 100%;
+        width: auto;
+      }
+      .buttons{
+        margin-left: 20px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        .button{
+          display: inline-block;
+          margin: 10px 0px;
+          padding: 0px 5px;
+          border-right: 3px solid #021722;
+          border-bottom: 3px solid #6E7578;
+          border-radius: 4px;
+          background-color: #043249;
+          text-align: center;
+          color: #ECECEC;
+          font-weight: normal;
+          &:hover{
+            color: #FFB649;
+            cursor: pointer;
+          }
+          &:active{
+            border: none;
+         }
+        }
+      }
+      .button{
+        display: inline-block;
+        margin: 10px 0px;
+        padding: 0px 5px;
+        border-right: 3px solid #021722;
+        border-bottom: 3px solid #6E7578;
+        border-radius: 4px;
+        background-color: #043249;
+        text-align: center;
+        color: #ECECEC;
+        font-weight: normal;
+        &:hover{
+          color: #FFB649;
+          cursor: pointer;
+        }
+        &:active{
+          border: none;
+       }
+      }
+      .comment{
+        display: inline;
+      }
+    }
+    span{
+      font-weight: bold;
+    }
+    .icon{
+      display: block;
+    }
+    .name{
+      margin: 30px 0px;
+    }
+    .subject{
+      margin: 30px 0px;
+    }
+    .profile{
+      margin: 30px 0px
+    }
+  }
+}

@@ -1,21 +1,33 @@
-<h2>ホーム画面</h2>
+<div class="home-index">
+  <main>
+    <% if student_signed_in? %>
+      <div class="login-user">
+        <%= current_student.name %>としてログインしています
+      </div>
+      <div class="buttons">
+        <%= link_to 'プロフィール詳細', student_path(current_student.id), class: 'button' %>
+        <%= link_to 'マッチング画面', students_path, class: 'button' %>
+        <%= link_to 'ログアウト', destroy_student_session_path, method: :delete, class: 'button' %>
+      </div>
+    <% elsif teacher_signed_in? %>
+      <div class="login-user">
+        <%= current_teacher.name %>としてログインしています
+      </div>
+      <div class="buttons">
+        <%= link_to 'プロフィール詳細', teacher_path(current_teacher.id), class: 'button' %>
+        <%= link_to 'マッチング画面', teachers_path, class: 'button' %>
+        <%= link_to 'ログアウト', destroy_teacher_session_path, method: :delete, class: 'button' %>
+      </div>
+    <% else %>
+      <div class="buttons">
+        <%= link_to '生徒として新規登録', new_student_registration_path, class: 'button' %>
+        <%= link_to '先生として新規登録', new_teacher_registration_path, class: 'button' %>
+      </div>
+    <% end %>
+  </main>
 
-<% if student_signed_in? %>
-  <%= current_student.name %>としてログインしています
-  <%= link_to 'マッチングページ', students_path %>
-  <%= link_to 'ログアウト', destroy_student_session_path, method: :delete %>
-<% elsif teacher_signed_in? %>
-  <%= current_teacher.name %>としてログインしています
-  <%= link_to 'マッチングページ', teachers_path %>
-  <%= link_to 'ログアウト', destroy_teacher_session_path, method: :delete %>
-<% else %>
-  生徒<br>
-  <%= link_to '新規登録', new_student_registration_path %>
-  <%= link_to 'ログイン', new_student_session_path %>
-  <br>
-  先生<br>
-  <%= link_to '新規登録', new_teacher_registration_path %>
-  <%= link_to 'ログイン', new_teacher_session_path %>
+  <footer>
+    Copyright &copy; Tsuyoshi Nakayama All Rights Reserved.
+  </footer>
 
-<% end %>
-
+</div>
