@@ -36,18 +36,19 @@
         border-radius: 8px;
         // width: 200px;
         text-align: center;
-        background-color: #043249;
+        // background-color: #043249;
+        background-color: rgba(0,0,0,0);
         font-size: 24px;
         font-weight: bold;
         text-decoration: none;
-      }
-      .button:hover{
-        border-color: #FFB649;
-        background-color: rgba(0,0,0,0);
-        color: #ECECEC;
-      }
-      .button:visited{
-        color: #ECECEC;
+        &:hover{
+          border-color: #FFB649;
+          background-color: rgba(0,0,0,0);
+          color: #FFB649;
+        }
+        &:visited{
+          color: #ECECEC;
+        }
       }
     }
   }
