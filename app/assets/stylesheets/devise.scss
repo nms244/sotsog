@@ -1,0 +1,108 @@
+// Variables
+$font-size: 14px;
+$line-height: 1.4;
+$lines: 2;
+
+.students-registrations-edit,
+.teachers-registrations-edit,
+.students-registrations-new,
+.teachers-registrations-new,
+.students-sessions-new,
+.teachers-sessions-new,{
+  display: flex;
+  nav{
+    .my-info{
+      border-bottom: 2px solid #021722;
+      .icon{
+        display: block;
+        margin: auto;
+        width: 80%;
+        height: auto;
+      }
+      .name{
+        margin: 10px 10px;
+        font-size:22px;
+        font-weight: bold;
+      }
+      .detail{
+        margin: 10px 10px;
+        span{
+          font-weight: bold;
+        }
+        .subject{
+          margin: 10px 0px;
+          overflow:hidden;
+          padding-right: 10px;
+          font-size: $font-size;
+          height: $font-size*$line-height*$lines;
+          line-height: $line-height;
+          position: relative;
+          &:before,
+          &:after {
+            position: absolute;
+          }
+          &:before {
+            content: "...";
+            top: $font-size*$line-height*($lines - 1);
+            right: 0;
+          }
+          &:after {
+            background-color: #ECECEC;
+            content: "";
+            height: 100%;
+            width: 100%;
+          }
+        }
+        .profile{
+          overflow: hidden;
+          margin: 10px 0px;
+          padding-right: 10px;
+          font-size: $font-size;
+          height: $font-size*$line-height*($lines + 1);
+          line-height: $line-height;
+          position: relative;
+          &:before,
+          &:after {
+            position: absolute;
+          }
+          &:before {
+            content: "...";
+            top: $font-size*$line-height*($lines + 0);
+            right: 0;
+          }
+          &:after {
+            background-color: #ECECEC;
+            content: "";
+            height: 100%;
+            width: 100%;
+          }
+        }
+      }
+    }
+    .gnavi{
+      flex: 1;
+      border-bottom: 2px solid #021722;
+      padding: 9px 15px;
+      font-size:22px;
+      font-weight: bold;
+    }
+    .side-footer{
+      padding: 5px 10px;
+      background-color: #043249;
+      color: #ECECEC;
+    }
+  }
+  main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .edit_student{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .field{
+      margin: 10px 0px;
+    }
+  }
+}
